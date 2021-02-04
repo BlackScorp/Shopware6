@@ -14,6 +14,7 @@ use Mollie\Api\MollieApiClient;
 use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemEntity;
 use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler;
 use Shopware\Core\Checkout\Order\OrderEntity;
+use Shopware\Core\Checkout\Promotion\Cart\PromotionProcessor;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -35,6 +36,7 @@ class RefundController extends StorefrontController
     private const CUSTOM_FIELDS_KEY_REFUNDS = 'refunds';
     private const CUSTOM_FIELDS_KEY_QUANTITY = 'quantity';
 
+    private const REFUND_DATA_KEY_AMOUNT = 'amount';
     private const REFUND_DATA_KEY_ID = 'id';
     private const REFUND_DATA_KEY_LINES = 'lines';
     private const REFUND_DATA_KEY_QUANTITY = self::CUSTOM_FIELDS_KEY_QUANTITY;
@@ -204,7 +206,7 @@ class RefundController extends StorefrontController
             try {
                 $order = $apiClient->orders->get($orderId, $orderParameters);
             } catch (ApiException $e) {
-                //
+                dd($e);
             }
 
             if (isset($order, $order->id)) {
@@ -221,6 +223,14 @@ class RefundController extends StorefrontController
                     $refundData[self::REFUND_DATA_KEY_TEST_MODE] = true;
                 }
 
+                $refundData = $this->checkForDiscounts(
+                    $orderLineItem->getOrder(),
+                    $orderLineItem->getReferencedId(),
+                    $quantity,
+                    $refundData
+                );
+
+                dd($refundData);
                 try {
                     $refund = $apiClient->orderRefunds->createFor($order, $refundData);
                 } catch (ApiException $e) {
@@ -260,6 +270,7 @@ class RefundController extends StorefrontController
             ], Context::createDefaultContext());
         }
 
+        dd($orderId, $orderLineId, $quantity);
         return new JsonResponse([
             self::RESPONSE_KEY_SUCCESS => $success,
         ]);
@@ -331,7 +342,7 @@ class RefundController extends StorefrontController
             $orderLineCriteria->addFilter(new EqualsFilter('versionId', $versionId));
         }
 
-        $orderLineCriteria->addAssociation('order');
+        $orderLineCriteria->addAssociation('order.lineItems');
         $orderLineCriteria->addAssociation('order.salesChannel');
         $orderLineCriteria->addAssociation('order.transactions');
 
@@ -339,5 +350,51 @@ class RefundController extends StorefrontController
             $orderLineCriteria,
             $context ?? Context::createDefaultContext()
         )->get($lineItemId);
+    }
+
+    private function checkForDiscounts(OrderEntity $order, string $referencedId, int $quantity, array $refundData)
+    {
+        $discountLineItems = $order->getLineItems()->filterByType(PromotionProcessor::LINE_ITEM_TYPE);
+
+        if ($discountLineItems->count() == 0) {
+            //No discounts, return data as is.
+            return $refundData;
+        }
+
+        $discountLines = [];
+
+        foreach($discountLineItems as $discountLineItem) {
+            $discountComposition = array_filter(
+                $discountLineItem->getPayload()['composition'],
+                function($productDiscountEntry) use($referencedId) {
+                    return $productDiscountEntry['id'] === $referencedId;
+                }
+            );
+
+            if(count($discountComposition) == 0) {
+                continue;
+            }
+
+            $discount = array_shift($discountComposition);
+
+            $discountAmountPerQuantity = round($discount['discount'] / $discount['quantity'], 2);
+
+            $discountLines[] = [
+                self::REFUND_DATA_KEY_ID => $discountLineItem->getCustomFields()[CustomFieldService::CUSTOM_FIELDS_KEY_MOLLIE_PAYMENTS][self::CUSTOM_FIELDS_KEY_ORDER_LINE_ID],
+                self::REFUND_DATA_KEY_QUANTITY => 1,
+                self::REFUND_DATA_KEY_AMOUNT => round($discountAmountPerQuantity * $quantity),
+            ];
+        }
+
+        if(empty($discountLines)) {
+            return $refundData;
+        }
+
+        $refundData[self::REFUND_DATA_KEY_LINES] = array_merge(
+            $refundData[self::REFUND_DATA_KEY_LINES],
+            $discountLines
+        );
+
+        dd($refundData);
     }
 }
