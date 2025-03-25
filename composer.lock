@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "34d29dbee6509b8e65630a5fd13f1870",
+    "content-hash": "49200e5b6e236f275e2c553b788d95ba",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -5411,16 +5411,16 @@
         },
         {
             "name": "sabberworm/php-css-parser",
-            "version": "v8.7.0",
+            "version": "v8.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyIntervals/PHP-CSS-Parser.git",
-                "reference": "f414ff953002a9b18e3a116f5e462c56f21237cf"
+                "reference": "3de493bdddfd1f051249af725c7e0d2c38fed740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/f414ff953002a9b18e3a116f5e462c56f21237cf",
-                "reference": "f414ff953002a9b18e3a116f5e462c56f21237cf",
+                "url": "https://api.github.com/repos/MyIntervals/PHP-CSS-Parser/zipball/3de493bdddfd1f051249af725c7e0d2c38fed740",
+                "reference": "3de493bdddfd1f051249af725c7e0d2c38fed740",
                 "shasum": ""
             },
             "require": {
@@ -5428,7 +5428,7 @@
                 "php": "^5.6.20 || ^7.0.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.40"
+                "phpunit/phpunit": "5.7.27 || 6.5.14 || 7.5.20 || 8.5.41"
             },
             "suggest": {
                 "ext-mbstring": "for parsing UTF-8 CSS"
@@ -5470,9 +5470,9 @@
             ],
             "support": {
                 "issues": "https://github.com/MyIntervals/PHP-CSS-Parser/issues",
-                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.7.0"
+                "source": "https://github.com/MyIntervals/PHP-CSS-Parser/tree/v8.8.0"
             },
-            "time": "2024-10-27T17:38:32+00:00"
+            "time": "2025-03-23T17:59:05+00:00"
         },
         {
             "name": "scssphp/scssphp",
@@ -11746,6 +11746,204 @@
     ],
     "packages-dev": [
         {
+            "name": "behat/behat",
+            "version": "v3.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Behat.git",
+                "reference": "132e32fdad69340f503b103a5ccaf5dd72ce7d83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/132e32fdad69340f503b103a5ccaf5dd72ce7d83",
+                "reference": "132e32fdad69340f503b103a5ccaf5dd72ce7d83",
+                "shasum": ""
+            },
+            "require": {
+                "behat/gherkin": "^4.10.0",
+                "behat/transliterator": "^1.2",
+                "ext-mbstring": "*",
+                "php": "^7.2 || ^8.0",
+                "psr/container": "^1.0 || ^2.0",
+                "symfony/config": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/console": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/translation": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "symfony/yaml": "^4.4 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "herrera-io/box": "~1.6.1",
+                "phpunit/phpunit": "^8.5 || ^9.0",
+                "symfony/process": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+                "vimeo/psalm": "^4.8"
+            },
+            "suggest": {
+                "ext-dom": "Needed to output test results in JUnit format."
+            },
+            "bin": [
+                "bin/behat"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Hook\\": "src/Behat/Hook/",
+                    "Behat\\Step\\": "src/Behat/Step/",
+                    "Behat\\Behat\\": "src/Behat/Behat/",
+                    "Behat\\Testwork\\": "src/Behat/Testwork/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Scenario-oriented BDD framework for PHP",
+            "homepage": "https://behat.org/",
+            "keywords": [
+                "Agile",
+                "BDD",
+                "ScenarioBDD",
+                "Scrum",
+                "StoryBDD",
+                "User story",
+                "business",
+                "development",
+                "documentation",
+                "examples",
+                "symfony",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Behat/issues",
+                "source": "https://github.com/Behat/Behat/tree/v3.15.0"
+            },
+            "time": "2024-10-30T07:54:51+00:00"
+        },
+        {
+            "name": "behat/gherkin",
+            "version": "v4.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Gherkin.git",
+                "reference": "cbb83c4c435dd8d05a161f2a5ae322e61b2f4db6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/cbb83c4c435dd8d05a161f2a5ae322e61b2f4db6",
+                "reference": "cbb83c4c435dd8d05a161f2a5ae322e61b2f4db6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.2|~8.0"
+            },
+            "require-dev": {
+                "cucumber/cucumber": "dev-gherkin-24.1.0",
+                "phpunit/phpunit": "~8|~9",
+                "symfony/yaml": "~3|~4|~5|~6|~7"
+            },
+            "suggest": {
+                "symfony/yaml": "If you want to parse features, represented in YAML files"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Behat\\Gherkin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Gherkin DSL parser for PHP",
+            "homepage": "http://behat.org/",
+            "keywords": [
+                "BDD",
+                "Behat",
+                "Cucumber",
+                "DSL",
+                "gherkin",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Gherkin/issues",
+                "source": "https://github.com/Behat/Gherkin/tree/v4.10.0"
+            },
+            "time": "2024-10-19T14:46:06+00:00"
+        },
+        {
+            "name": "behat/transliterator",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/Transliterator.git",
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/baac5873bac3749887d28ab68e2f74db3a4408af",
+                "reference": "baac5873bac3749887d28ab68e2f74db3a4408af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0",
+                "phpunit/phpunit": "^8.5.25 || ^9.5.19"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Transliterator\\": "src/Behat/Transliterator"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Artistic-1.0"
+            ],
+            "description": "String transliterator",
+            "keywords": [
+                "i18n",
+                "slug",
+                "transliterator"
+            ],
+            "support": {
+                "issues": "https://github.com/Behat/Transliterator/issues",
+                "source": "https://github.com/Behat/Transliterator/tree/v1.5.0"
+            },
+            "time": "2022-03-30T09:27:43+00:00"
+        },
+        {
             "name": "boxblinkracer/phpunuhi",
             "version": "dev-main",
             "source": {
@@ -12940,16 +13138,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.8",
+            "version": "2.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f"
+                "reference": "051a3b6b9b80df4ba3a7f801a8b53ad7d8f1c15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f9adff3b87c03b12cc7e46a30a524648e497758f",
-                "reference": "f9adff3b87c03b12cc7e46a30a524648e497758f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/051a3b6b9b80df4ba3a7f801a8b53ad7d8f1c15f",
+                "reference": "051a3b6b9b80df4ba3a7f801a8b53ad7d8f1c15f",
                 "shasum": ""
             },
             "require": {
@@ -12994,7 +13192,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-09T09:30:48+00:00"
+            "time": "2025-03-23T14:57:55+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

@@ -45,7 +45,7 @@
         "psr-4": {
             "Mollie\\Shopware\\": "shopware/",
             "Kiener\\MolliePayments\\": "src/",
-            "Mollie\\Api\\": "vendor_manual/mollie-api-php/src"
+            "Mollie\\Api\\": "vendor_manual/mollie/mollie-api-php/src/"
         }
     },
     "autoload-dev": {
@@ -54,7 +54,8 @@
             "Mollie\\Integration\\": "tests/Integration/",
             "MolliePayments\\Tests\\": "tests/PHPUnit/",
             "MolliePayments\\PHPStan\\": "tests/PHPStan/",
-            "MolliePayments\\Fixtures\\": "tests/Fixtures/"
+            "MolliePayments\\Fixtures\\": "tests/Fixtures/",
+            "Mollie\\Behat\\": "tests/Behat/src/"
         }
     },
     "suggest": {
@@ -76,7 +77,8 @@
         "phpcompatibility/php-compatibility": "^9.3",
         "squizlabs/php_codesniffer": "^3",
         "boxblinkracer/phpunuhi": "dev-main",
-        "spaze/phpstan-disallowed-calls": "^4"
+        "spaze/phpstan-disallowed-calls": "^4",
+        "behat/behat": "3.15"
     },
     "scripts": {
         "post-install-cmd": [
